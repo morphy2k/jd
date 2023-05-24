@@ -11,8 +11,16 @@ func (p path) appendIndex(o jsonObject, metadata []Metadata) path {
 	if checkMetadata(MULTISET, metadata) {
 		meta = append(meta, jsonString(MULTISET.string()))
 	}
-	sk := getSetkeysMetadata(metadata)
-	if sk != nil {
+	if sk := getSetkeysMetadata(metadata); sk != nil {
+		// Add only the keys specified in the setkeys metadata to index.
+		obj := make(jsonObject)
+		for k := range sk.keys {
+			if v, ok := o[k]; ok {
+				obj[k] = v
+			}
+		}
+		o = obj
+
 		meta = append(meta, jsonString(sk.string()))
 	}
 	p = append(p, meta)
