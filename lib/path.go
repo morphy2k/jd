@@ -4,13 +4,13 @@ type path []JsonNode
 
 func (p path) appendIndex(o jsonObject, metadata []Metadata) path {
 	// Append metadata.
-	meta := make(jsonArray, 0)
-	if checkMetadata(SET, metadata) {
-		meta = append(meta, jsonString(SET.string()))
-	}
-	if checkMetadata(MULTISET, metadata) {
-		meta = append(meta, jsonString(MULTISET.string()))
-	}
+	// meta := make(jsonArray, 0)
+	// if checkMetadata(SET, metadata) {
+	// 	meta = append(meta, jsonString(SET.string()))
+	// }
+	// if checkMetadata(MULTISET, metadata) {
+	// 	meta = append(meta, jsonString(MULTISET.string()))
+	// }
 	if sk := getSetkeysMetadata(metadata); sk != nil {
 		// Add only the keys specified in the setkeys metadata to index.
 		obj := make(jsonObject)
@@ -21,9 +21,9 @@ func (p path) appendIndex(o jsonObject, metadata []Metadata) path {
 		}
 		o = obj
 
-		meta = append(meta, jsonString(sk.string()))
+		// meta = append(meta, jsonString(sk.string()))
 	}
-	p = append(p, meta)
+	// p = append(p, meta)
 	// Append index.
 	return append(p, o)
 }
