@@ -92,7 +92,7 @@ func (o jsonObject) ident(metadata []Metadata) [8]byte {
 			hashes = append(hashes, v.hashCode(metadata))
 		}
 	}
-	if len(hashes) == 0 {
+	if len(hashes) < 2 {
 		return o.hashCode(metadata)
 	}
 	return hashes.combine()
