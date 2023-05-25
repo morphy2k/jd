@@ -3,7 +3,7 @@ package jd
 import (
 	"encoding/json"
 	"io/ioutil"
-	"strings"
+	"unicode"
 
 	"gopkg.in/yaml.v2"
 )
@@ -37,7 +37,7 @@ func ReadYamlString(s string) (JsonNode, error) {
 }
 
 func unmarshal(bytes []byte, fn func([]byte, interface{}) error) (JsonNode, error) {
-	if strings.TrimSpace(string(bytes)) == "" {
+	if isEmptyOrWhitespace(bytes) {
 		return voidNode{}, nil
 	}
 	var v interface{}
@@ -50,4 +50,13 @@ func unmarshal(bytes []byte, fn func([]byte, interface{}) error) (JsonNode, erro
 		return nil, err
 	}
 	return n, nil
+}
+
+func isEmptyOrWhitespace(b []byte) bool {
+	for _, v := range b {
+		if !unicode.IsSpace(rune(v)) {
+			return false
+		}
+	}
+	return true
 }
