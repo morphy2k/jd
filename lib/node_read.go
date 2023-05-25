@@ -1,10 +1,10 @@
 package jd
 
 import (
-	"encoding/json"
 	"io/ioutil"
 	"unicode"
 
+	"github.com/goccy/go-json"
 	"gopkg.in/yaml.v2"
 )
 

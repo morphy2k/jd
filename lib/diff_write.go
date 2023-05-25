@@ -2,8 +2,9 @@ package jd
 
 import (
 	"bytes"
-	"encoding/json"
 	"fmt"
+
+	"github.com/goccy/go-json"
 )
 
 // RenderOption is a closed set of values which modify the output
