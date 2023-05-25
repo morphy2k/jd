@@ -1,10 +1,11 @@
 package jd
 
 import (
-	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"strings"
+
+	"github.com/goccy/go-json"
 )
 
 // ReadDiffFile reads a file in native jd format.
@@ -148,11 +149,12 @@ func ReadPatchFile(filename string) (Diff, error) {
 // the strict patching strategy of a native jd patch.
 //
 // For example:
-//   [
-//     {"op":"test","path":"/foo","value":"bar"},
-//     {"op":"remove","path":"/foo","value":"bar"},
-//     {"op":"add","path":"/foo","value":"baz"}
-//   ]
+//
+//	[
+//	  {"op":"test","path":"/foo","value":"bar"},
+//	  {"op":"remove","path":"/foo","value":"bar"},
+//	  {"op":"add","path":"/foo","value":"baz"}
+//	]
 func ReadPatchString(s string) (Diff, error) {
 	var patch []patchElement
 	err := json.Unmarshal([]byte(s), &patch)

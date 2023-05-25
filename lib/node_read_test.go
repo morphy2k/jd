@@ -1,7 +1,10 @@
 package jd
 
 import (
+	"io/ioutil"
 	"testing"
+
+	"github.com/goccy/go-json"
 )
 
 func TestUnmarshal(t *testing.T) {
@@ -142,4 +145,17 @@ func p(elements ...interface{}) path {
 		path = append(path, n)
 	}
 	return path
+}
+
+func BenchmarkUnmarshal(b *testing.B) {
+	bytes, err := ioutil.ReadFile("/home/markus/upload/items.json")
+	if err != nil {
+		b.Fatal(err)
+	}
+
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		unmarshal(bytes, json.Unmarshal)
+	}
 }
