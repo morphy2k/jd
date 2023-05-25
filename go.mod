@@ -1,4 +1,4 @@
-module github.com/josephburnett/jd
+module github.com/morphy2k/jd
 
 go 1.18
 

@@ -11,8 +11,8 @@ import (
 	"strconv"
 	"strings"
 
-	jd "github.com/josephburnett/jd/lib"
-	"github.com/josephburnett/jd/web/serve"
+	jd "github.com/morphy2k/jd/lib"
+	"github.com/morphy2k/jd/web/serve"
 )
 
 const version = "HEAD"

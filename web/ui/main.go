@@ -6,7 +6,7 @@ import (
 	"sync"
 	"syscall/js"
 
-	jd "github.com/josephburnett/jd/lib"
+	jd "github.com/morphy2k/jd/lib"
 )
 
 const (
